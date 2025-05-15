@@ -5,23 +5,35 @@ from fase_agua import iniciar_fase_agua
 
 def mostrar_menu(screen):
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont(None,48)
-    txt1 = font.render("1 - Tank Sol", True, (200,200,0))
-    txt2 = font.render("2 - Tank Semente", True, (100,200,100))
-    txt3 = font.render("3 - Tank Água", True, (100,100,200))
+    menu_img = pygame.image.load("TanquesDaTerra/assets/ui/uiMenu.png").convert_alpha()
+    menu_img = pygame.transform.scale(menu_img, (800, 600))
+
+    # Defina as áreas dos botões (ajuste conforme o layout da imagem)
+    btn_sol = pygame.Rect(40, 90, 700, 110)      # x, y, largura, altura
+    btn_agua = pygame.Rect(40, 230, 700, 110)
+    btn_semente = pygame.Rect(40, 370, 700, 110)
+
+    pygame.draw.rect(screen, (255,255,0), btn_sol, 2)
+    pygame.draw.rect(screen, (0,255,255), btn_agua, 2)
+    pygame.draw.rect(screen, (0,255,0), btn_semente, 2)
 
     while True:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 pygame.quit(); exit()
-            if e.type == pygame.KEYDOWN:
-                if e.key == pygame.K_1: return iniciar_fase_sol
-                if e.key == pygame.K_2: return iniciar_fase_semente
-                if e.key == pygame.K_3: return iniciar_fase_agua
+            if e.type == pygame.MOUSEBUTTONDOWN and e.button == 1:
+                if btn_sol.collidepoint(e.pos):
+                    return iniciar_fase_sol
+                if btn_agua.collidepoint(e.pos):
+                    return iniciar_fase_agua
+                if btn_semente.collidepoint(e.pos):
+                    return iniciar_fase_semente
 
         screen.fill((30,30,30))
-        screen.blit(txt1,(100,150))
-        screen.blit(txt2,(100,250))
-        screen.blit(txt3,(100,350))
+        screen.blit(menu_img, (0, 0))
+        # Opcional: desenhe retângulos dos botões para depuração
+        # pygame.draw.rect(screen, (255,255,0), btn_sol, 2)
+        # pygame.draw.rect(screen, (0,255,255), btn_agua, 2)
+        # pygame.draw.rect(screen, (0,255,0), btn_semente, 2)
         pygame.display.flip()
         clock.tick(60)
