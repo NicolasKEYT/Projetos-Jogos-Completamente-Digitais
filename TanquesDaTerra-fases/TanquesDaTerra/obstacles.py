@@ -44,6 +44,11 @@ class Obstacle:
         else:
             # lixo, fogo etc.
             self.rect = pygame.Rect(x, y, w, h)
+            if kind == 'fogo':
+                img_path = os.path.join(base, 'assets', 'efects', 'fogo.gif')
+                self.image = pygame.image.load(img_path).convert_alpha()
+            else:
+                self.image = None
 
     def update(self):
         if self.kind == 'inimigo':
@@ -71,8 +76,10 @@ class Obstacle:
             fg_bar = pygame.Rect(self.rect.x-cam_off, self.rect.y-7, bw*ratio, 4)
             pygame.draw.rect(surface, (50,50,50), bg_bar)
             pygame.draw.rect(surface, (0,255,0),   fg_bar)
+        elif self.kind == 'fogo' and self.image:
+            surface.blit(self.image, self.rect.move(-cam_off, 0))
         else:
             # outros tipos
-            colors = {'lixo':(100,100,100), 'fogo':(255,100,0)}
+            colors = {'lixo':(100,100,100)}
             col = colors.get(self.kind, (255,255,255))
             pygame.draw.rect(surface, col, self.rect.move(-cam_off, 0))
