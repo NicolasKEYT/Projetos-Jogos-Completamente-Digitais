@@ -1,5 +1,6 @@
 import pygame
 import os
+import time
 from tank_semente import TankSemente
 from obstacles import Obstacle
 from camera import Camera
@@ -46,7 +47,8 @@ def iniciar_fase_semente(screen):
     # — Lista de plataformas geradas —
     platforms = []
 
-    cam = Camera(level_width=10**9, level_height=600)  # fase infinita em X, limite pelo timer
+    # — Câmera para fase infinita —
+    cam = Camera(level_width=10**9, level_height=600)
 
     # — Carrega sprite da plataforma (arbusto) —
     bush_surf = pygame.image.load(
@@ -54,10 +56,9 @@ def iniciar_fase_semente(screen):
     ).convert_alpha()
 
     # — Alcance de plantio —
-    PLANT_RANGE = 30  # px de distância do centro do buraco (reduzido)  # px de distância do centro do buraco
+    PLANT_RANGE = 30  # px de distância do centro do buraco
 
-            # — Loop principal —
-    import time
+    # — Loop principal —
     start_time = time.time()
     TIME_LIMIT = 20.0  # segundos para acabar a fase
 
@@ -66,13 +67,16 @@ def iniciar_fase_semente(screen):
         elapsed = time.time() - start_time
         if elapsed >= TIME_LIMIT:
             return  # fim da fase por tempo
+
+        # Controla FPS e obtém dt
         dt = clock.tick(60) / 1000.0
-        dt = clock.tick(60) / 1000.0
+
         # Eventos
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+
         # Atualiza tanque e câmera
         keys = pygame.key.get_pressed()
         tank.handle_input(keys)
@@ -91,11 +95,10 @@ def iniciar_fase_semente(screen):
                     plat = pygame.Rect(px, py, largura, altura)
                     platforms.append(plat)
                     obstacles.remove(obs)
-        
+
         # Colisão com buraco sem plataforma: impede passagem
         for obs in obstacles:
             if obs.kind == 'buraco' and tank.rect.colliderect(obs.rect):
-                # reposiciona tanque ao lado do buraco
                 if tank.rect.centerx < obs.rect.centerx:
                     tank.rect.right = obs.rect.left
                 else:
@@ -122,7 +125,6 @@ def iniciar_fase_semente(screen):
         # Desenha tanque por último (camada superior)
         tank.draw(screen, cam.offset)
 
-                
         # Placar: tempo e sementes plantadas
         font = pygame.font.SysFont("arialblack", 20, bold=True)
         text_time = f"Tempo: {elapsed:.1f}s"
