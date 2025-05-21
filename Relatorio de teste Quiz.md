@@ -11,3 +11,6 @@ O quiz aparece assim que você conclui o objetivo da fase que o jogador está jo
 <br>
 <br>
 Ou seja, o quiz é muito importante pois a fase só se conclui por inteiro se você responder corretamente. Caso contrário, seu progresso e pontuação serão perdidos.
+<br>
+<br>
+Tudo testado e está correndo bem.
