@@ -10,3 +10,6 @@ Em relação às queimadas, elas tem um tempo até serem apagadas. Então, difer
 <br>
 <br>
 Em relação às fases, o nível de dificuldade vai aumentando pois o tempo para apagar o fogo e o tempo que leva para apagar todos os incêndios necessários aumentam.
+<br>
+<br>
+Tudo testado e está correndo bem.
