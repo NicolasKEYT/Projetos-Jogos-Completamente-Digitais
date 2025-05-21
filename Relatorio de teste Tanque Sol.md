@@ -10,3 +10,6 @@ Em relação aos seus inimigos, eles ateiam fogo quando entram em contato com o 
 <br>
 <br>
 Em relação às fases, o nível de dificuldade vai aumentando pois a quantidade de inimigos e a velocidade com que eles se aproximam do tanque também aumentam.
+<br>
+<br>
+Tudo testado e está correndo bem.
