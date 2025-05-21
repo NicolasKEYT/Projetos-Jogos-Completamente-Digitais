@@ -1,0 +1,7 @@
+Diego,1000
+Nicolas,2000
+testte,800
+gfh,0
+video,1600
+teste123,800
+asdasd,0
