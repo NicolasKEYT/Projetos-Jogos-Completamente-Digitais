@@ -9,3 +9,6 @@ Ou seja, para você aparecer no Ranking:
 - Concluiu o jogo mas errou o quiz ❌
 - Concluiu o jogo, acertou o quiz mas fez 300 pontos e o sétimo colocado está com 350 pontos ❌
 - Concluiu o jogo, acertou o quiz e fez mais pontos que algum do Ranking(você, então, ficará a frente dos jogadores de pontuação inferior) ✅
+<br>
+<br>
+Tudo testado e está correndo bem.
